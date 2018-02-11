@@ -11,7 +11,7 @@ DEBUG=0
 #      -gencode arch=compute_20,code=[sm_20,sm_21] \ This one is deprecated?
 
 # This is what I use, uncomment if you know your arch and want to specify
-ARCH= -gencode arch=compute_35,code=sm_35 -gencode arch=compute_50,code=sm_50 -gencode arch=compute_52,code=sm_52 
+ARCH= -gencode arch=compute_61,code=sm_61 -gencode arch=compute_62,code=sm_62 
 
 VPATH=./src/:./examples
 SLIB=libdarknet.so

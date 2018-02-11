@@ -164,6 +164,26 @@ void cuda_pull_array(float *x_gpu, float *x, size_t n)
     check_error(status);
 }
 
+void cuda_push_int_array(int *x_gpu, int *x, size_t n)
+{
+    size_t size = sizeof(int)*n;
+    cudaError_t status = cudaMemcpy(x_gpu, x, size, cudaMemcpyHostToDevice);
+    check_error(status);
+}
+
+void cuda_pull_int_array(int *x_gpu, int *x, size_t n)
+{
+    size_t size = sizeof(int)*n;
+    cudaError_t status = cudaMemcpy(x, x_gpu, size, cudaMemcpyDeviceToHost);
+    check_error(status);
+}
+
+void cuda_int_free(int *x_gpu)
+{
+    cudaError_t status = cudaFree(x_gpu);
+    check_error(status);
+}
+
 float cuda_mag_array(float *x_gpu, size_t n)
 {
     float *temp = calloc(n, sizeof(float));
