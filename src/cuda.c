@@ -66,9 +66,12 @@ cudnnHandle_t cudnn_handle()
 {
     static int init[16] = {0};
     static cudnnHandle_t handle[16];
+    static cudaStream_t cuda_stream[16];
     int i = cuda_get_device();
     if(!init[i]) {
+        cudaStreamCreate(&cuda_stream[i]);
         cudnnCreate(&handle[i]);
+        cudnnSetStream(handle[i], cuda_stream[i]);
         init[i] = 1;
     }
     return handle[i];
